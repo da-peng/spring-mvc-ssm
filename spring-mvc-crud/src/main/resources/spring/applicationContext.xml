@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 全局扫描除了@Controller的注解，的beans自动扫描该包， -->
+    <context:component-scan base-package="com.qlchat.controller">
+        <!--使SpringMVC认为包下用了@controller注解的类是控制器-->
+        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+
+    <!-- properties配置文件读取 -->
+    <bean
+            class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+            id="corePlaceHolder">
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        <property name="searchSystemEnvironment" value="true" />
+        <!--<property name="locations">-->
+            <!--<list>-->
+                <!--<value>classpath:*.properties</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    </bean>
+
+    <!--以注解的形式驱动,之后可以使用@Transactional的形式使用驱动-->
+
+    <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
+
+    <!-- 因为application-context是应用全局上下文配置，可以使用import的形式自定义引入其它配置文件 -->
+    <!--<import resource="classpath:database.xml" />-->
+    <!--<import resource="classpath:redis.xml" />-->
+    <!--<import resource="classpath:dubbo-consumer.xml"/>-->
+
+
+</beans>
