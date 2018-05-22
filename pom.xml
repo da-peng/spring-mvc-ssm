@@ -29,12 +29,13 @@
 
     <dependencies>
         <!-- 自制Jetty插件用 -->
-        <!--https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server/9.4.8.v20171121-->
+        <!---->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
             <version>${jetty.version}</version>
         </dependency>
+
         <!--<dependency>-->
             <!--<groupId>javax.servlet</groupId>-->
             <!--<artifactId>javax.servlet-api</artifactId>-->

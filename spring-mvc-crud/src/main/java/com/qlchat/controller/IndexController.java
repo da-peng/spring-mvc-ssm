@@ -1,5 +1,6 @@
 package com.qlchat.controller;
 
+import com.qlchat.utils.LogUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model m){
         m.addAttribute("someAttribute","11111");
+        LogUtils.getBussinessLogger().info("Bussiness！！");
         return "index";
     }
 
