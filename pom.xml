@@ -22,28 +22,29 @@
         <!--<log4j.version>1.2.4</log4j.version>-->
         <!--<slf4j.version>1.7.21</slf4j.version>-->
         <springframework.webmvc.version>4.3.16.RELEASE</springframework.webmvc.version>
-        <jetty.version>9.0.0.v20130308</jetty.version>
+        <jetty.version>9.4.8.v20171121</jetty.version>
         <!--<spring-security-web.version>4.3.16.RELEASE</spring-security-web.version>-->
         <env>dev</env>
     </properties>
 
     <dependencies>
         <!-- 自制Jetty插件用 -->
-        <dependency>
-            <groupId>org.eclipse.jetty.aggregate</groupId>
-            <artifactId>jetty-all</artifactId>
-            <version>${jetty.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
+        <!--https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server/9.4.8.v20171121-->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-jsp</artifactId>
+            <artifactId>jetty-server</artifactId>
             <version>${jetty.version}</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javax.servlet</groupId>-->
+            <!--<artifactId>javax.servlet-api</artifactId>-->
+            <!--<version>3.1.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.eclipse.jetty</groupId>-->
+            <!--<artifactId>jetty-jsp</artifactId>-->
+            <!--<version>${jetty.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
