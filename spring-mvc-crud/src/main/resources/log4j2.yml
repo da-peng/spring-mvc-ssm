@@ -44,8 +44,8 @@ Configuration: # yaml语法数据嵌套
         TimeBasedTriggeringPolicy:  # 按天分类
            modulate: true
            interval: 1
-        DefaultRolloverStrategy:     # 文件最多10个
-           max: 10
+#        DefaultRolloverStrategy:     # 文件最多10个
+#           max: 10
 
 #   平台日志
     - name: PLATFORM_ROLLING_FILE
