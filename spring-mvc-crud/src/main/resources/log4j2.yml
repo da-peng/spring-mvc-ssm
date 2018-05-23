@@ -12,7 +12,7 @@ Configuration: # yaml语法数据嵌套
       value: log
     - name: project.name # yaml 语法 使用 - 表示 list 列表
       value: ssm-crud
-    - name: log.pattern
+    - name: log.pattern  # log输出模板
       value: "%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p ${PID:-} [%15.15t] %-30.30C{1.} : %m%n"
 # 对应json表达
 # { properties: { property: [{name: filename,},{name:}]}}

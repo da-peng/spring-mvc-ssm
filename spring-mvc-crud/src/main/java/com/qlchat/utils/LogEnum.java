@@ -15,9 +15,7 @@ public enum LogEnum {
 
     DB("db"),
 
-    EXCEPTION("exception"),
-
-    ;
+    EXCEPTION("exception"),;
 
 
     private String category;

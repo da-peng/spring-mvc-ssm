@@ -1,6 +1,5 @@
 <html>
 <body>
-<h2>Hello World!</h2>
-<p>${someAttribute}</p>
+<h2>${someAttribute}</h2>
 </body>
 </html>

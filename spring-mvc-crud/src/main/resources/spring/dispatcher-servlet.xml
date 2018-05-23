@@ -18,5 +18,18 @@
     <!--  开启驱动注解 可以将request参数与绑定到controller参数上 -->
     <mvc:annotation-driven/>
 
+    <!--异常处理器-->
+    <bean id="exceptionResolver" class="com.qlchat.exception.ExceptionResolver"/>
+
+    <!--配置拦截器，实现验签名-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 拦截所有URL中包含/user/的请求 -->
+            <mvc:mapping path="/api/**"/>
+            <bean class="com.qlchat.interceptor.LogInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
 
 </beans>
