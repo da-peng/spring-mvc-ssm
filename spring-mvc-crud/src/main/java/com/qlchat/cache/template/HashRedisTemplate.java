@@ -1,23 +1,24 @@
 package com.qlchat.cache.template;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author grabbywu
  * @Title: spring-mvc-ssm
  * @Package com.qlchat.cache
- * @Description: todo
+ * @Description: Hash操作
  * @date 5/24/182:34 PM
  */
 public class HashRedisTemplate extends RedisTemplate<String,Object> {
 
     /**
-     * 自定义序列化方式
+     * 初始化
      */
-    public HashRedisTemplate() {
+    @PostConstruct
+    public void init() {
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
         this.setHashKeySerializer(jackson2JsonRedisSerializer);
         this.setHashValueSerializer(jackson2JsonRedisSerializer);
@@ -35,6 +36,7 @@ public class HashRedisTemplate extends RedisTemplate<String,Object> {
         }
 
         this.opsForHash().put(key, field, value);
+
     }
 
     /**
@@ -51,7 +53,7 @@ public class HashRedisTemplate extends RedisTemplate<String,Object> {
     }
 
     /**
-     * 判断 是否存在 key 以及 hash key
+     * 判断 是否存在 key 以及 hash field
      * @param key
      * @param field
      * @return

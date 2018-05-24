@@ -1,5 +1,6 @@
 package com.qlchat.service;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 /**
  * @author grabbywu
@@ -8,5 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @Description: todo
  * @date 5/24/184:58 PM
  */
-public class UserService {
+
+public interface UserService {
 }

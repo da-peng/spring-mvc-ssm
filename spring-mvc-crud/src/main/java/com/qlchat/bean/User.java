@@ -1,5 +1,7 @@
 package com.qlchat.bean;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author grabbywu
  * @Title: spring-mvc-ssm
@@ -7,6 +9,7 @@ package com.qlchat.bean;
  * @Description: todo
  * @date 5/23/1811:17 PM
  */
+@Component
 public class User {
     private String username="";
     private String password="";

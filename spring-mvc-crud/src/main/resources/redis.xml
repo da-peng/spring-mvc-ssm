@@ -28,7 +28,7 @@
     <!-- redis工具类 -->
     <!-- redis服务器中心 -->
     <bean id="connectionFactory"
-          class="com.qlchat.cache.RedisConnectionFactory">
+          class="com.qlchat.cache.redis.RedisConnectionFactory">
         <property name="hostName" value="${redis.servers}" />
         <!--<property name="port" value="6379"></property>-->
         <property name="password" value="#{'${redis.password}'!=''?'${redis.password}':null}" />
@@ -38,6 +38,10 @@
     <!--template-->
     <!-- redis操作模板，面向对象的模板 -->
     <bean id="zsetRedisTemplate" class="com.qlchat.cache.template.ZSetRedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+    </bean>
+
+    <bean id="hashRedisTemplate" class="com.qlchat.cache.template.HashRedisTemplate">
         <property name="connectionFactory" ref="connectionFactory" />
     </bean>
 
@@ -60,12 +64,7 @@
         <!--</property>-->
     </bean>
 
-    <bean id="hashRedisTemplate" class="com.qlchat.cache.template.HashRedisTemplate">
-        <property name="connectionFactory" ref="connectionFactory" />
-    </bean>
 
-    <bean id="hyperLogLogTemplate" class="com.qlchat.cache.template.HyperLogLogTemplate">
-        <property name="connectionFactory" ref="connectionFactory" />
-    </bean>
+
 
 </beans>

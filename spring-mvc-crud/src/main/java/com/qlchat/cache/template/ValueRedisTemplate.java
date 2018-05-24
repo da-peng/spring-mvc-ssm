@@ -1,6 +1,10 @@
 package com.qlchat.cache.template;
 
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author grabbywu
@@ -9,5 +13,8 @@ import org.springframework.data.redis.core.RedisTemplate;
  * @Description: todo
  * @date 5/24/182:34 PM
  */
-public class ValueRedisTemplate extends RedisTemplate {
+public class ValueRedisTemplate extends StringRedisTemplate {
+
+
+
 }

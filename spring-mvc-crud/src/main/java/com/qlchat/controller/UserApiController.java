@@ -1,7 +1,7 @@
 package com.qlchat.controller;
 
 import com.qlchat.base.ApiResponse;
-import com.qlchat.dto.UserInfo;
+import com.qlchat.dto.UserInfoDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +25,7 @@ public class UserApiController {
     public ApiResponse userInfo(){
         ApiResponse response = ApiResponse.ok();
 
-        UserInfo userInfo = new UserInfo();
+        UserInfoDto userInfo = new UserInfoDto();
         userInfo.setNick("DaPeng");
         userInfo.setEmail("wuxiaopeng@qlchat.com");
 

@@ -17,7 +17,7 @@ import org.springframework.core.annotation.Order;
  * @Description: 异常解释处理类
  * @date 5/23/185:26 PM
  */
-@Order(-1000)
+@Order(-1000)  //优先级最高
 public class ExceptionResolver implements HandlerExceptionResolver {
 
     @Override
@@ -32,6 +32,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
         } else { //其它错误
             json.put("code",102);
             json.put("msg","异常");
+            //todo 写到错误日志里
             ex.printStackTrace();
         }
         try {

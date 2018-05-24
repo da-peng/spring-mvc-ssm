@@ -6,10 +6,10 @@ import java.io.Serializable;
  * @author grabbywu
  * @Title: spring-mvc-ssm
  * @Package com.qlchat.dto
- * @Description: todo
+ * @Description: Dto 数据传输层，返回客户端
  * @date 5/23/181:54 PM
  */
-public class UserInfo implements Serializable {
+public class UserInfoDto implements Serializable {
 
     private  String nick;
     private  String email;
