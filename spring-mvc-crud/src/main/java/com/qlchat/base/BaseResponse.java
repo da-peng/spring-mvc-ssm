@@ -4,7 +4,7 @@ package com.qlchat.base;
  * @author grabbywu
  * @Title: spring-mvc-ssm
  * @Package com.qlchat.base
- * @Description: todo
+ * @Description: 错误码
  * @date 5/23/182:46 PM
  */
 public abstract class BaseResponse {

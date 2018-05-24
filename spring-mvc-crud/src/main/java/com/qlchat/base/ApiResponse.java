@@ -7,7 +7,7 @@ import java.util.Map;
  * @author grabbywu
  * @Title: spring-mvc-ssm
  * @Package com.qlchat.dto
- * @Description: 将response 划分为 {code ,msg} 以及 data{K:V , K:V  }
+ * @Description: 将response 划分为 {code ,msg} 以及 data{K:V , K:V  } ，基于对象的
  * @date 5/22/184:48 PM
  */
 public class ApiResponse  extends BaseResponse{

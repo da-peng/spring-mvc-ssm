@@ -7,7 +7,7 @@ import java.util.Map;
  * @author grabbywu
  * @Title: spring-mvc-ssm
  * @Package com.qlchat.base
- * @Description: todo
+ * @Description: 基于Map的response
  * @date 5/23/182:48 PM
  */
 public class DataResponse extends BaseResponse{

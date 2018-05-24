@@ -4,7 +4,7 @@ package com.qlchat.exception;
  * @author grabbywu
  * @Title: spring-mvc-ssm
  * @Package com.qlchat.base
- * @Description: todo
+ * @Description: 错误代码枚举类
  * @date 5/23/184:30 PM
  */
 public enum ErrorCode {

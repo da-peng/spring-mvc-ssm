@@ -1,51 +1,33 @@
 package com.qlchat.interceptor;
 
-import com.qlchat.exception.BusinessException;
-import com.qlchat.exception.ErrorCode;
-import com.qlchat.utils.SignUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
-
+import javax.servlet.http.HttpSession;
 /**
- * Created by Administrator on
+ * Created by Administrator on  此处应用于业务 登陆session验证
  */
-public class LogInterceptor implements HandlerInterceptor {
+@Component
+public class LoginInterceptor implements HandlerInterceptor {
     private static final String SECRET= "";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse httpServletResponse, Object o) throws Exception {
         //该方法将在请求处理之前进行调用，比如判断当前登录的用户，如果没有登录
         // 跳到你自己的登录页面 response.sendRedirect("/admin/login"); 返回 false，下面两个方法都不会执行
-        //有登录，返回true
-        Map<String,String[]> map = request.getParameterMap();
+        //有登录，
+        HttpSession session = request.getSession();
 
-        try {
-            String appkey = request.getParameter("timestamp");
-            String sign = request.getParameter("sign");
-            String id = request.getParameter("id");
-            if (StringUtils.isBlank(appkey) || StringUtils.isBlank(sign)) {
-                throw new BusinessException(ErrorCode.WRONG_PARAMS);
-            }
-
-            //验证用户发来参数中的校验签名是否和秘钥一致
-            boolean flag = SignUtils.verifyParam(map, SECRET);
-
-            if (!flag) {
-                throw new BusinessException(ErrorCode.SIGN_PARAM_ERROR);
-            }
-
-            return flag;
-        } catch (BusinessException e) {
-           e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-
+        if (session.getAttribute("userToken")==null){
+            System.out.println("LoginInterceptor");
+//            request.getRequestDispatcher("/login").forward(request,httpServletResponse);
+            httpServletResponse.sendRedirect("/login");
+            return false;
         }
+        System.out.println("LoginInterceptor-True");
 
         return true;
     }
@@ -62,4 +44,7 @@ public class LogInterceptor implements HandlerInterceptor {
         //该方法将在整个请求结束之后，也就是在DispatcherServlet 渲染了对应的视图之后执行
         // 在这里可以做些日志处理 LogUtils.saveLog(request, handler, e);
     }
+
+
+
 }

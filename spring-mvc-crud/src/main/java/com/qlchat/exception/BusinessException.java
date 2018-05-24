@@ -4,7 +4,7 @@ package com.qlchat.exception;
  * @author grabbywu
  * @Title: spring-mvc-ssm
  * @Package com.qlchat.base
- * @Description: todo
+ * @Description: 自定义业务异常类
  * @date 5/23/184:30 PM
  */
 public class BusinessException extends RuntimeException {
