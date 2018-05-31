@@ -86,7 +86,13 @@
             <!--<artifactId>spring-core</artifactId>-->
             <!--<version>${springframework.core.version}</version>-->
         <!--</dependency>-->
-
+        <!--Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${springframework.webmvc.version}</version>
+        </dependency>
+        <!--Spring MVC-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>

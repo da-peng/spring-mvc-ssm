@@ -1,6 +1,6 @@
 package com.qlchat.dao;
 
-import com.qlchat.bean.User;
+import com.qlchat.bean.UserInfo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,19 +15,19 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    public User getUserById(Integer id) {
+    public UserInfo getUserById(Integer id) {
         return null;
     }
 
-    public List<User> listAllUser() {
+    public List<UserInfo> listAllUser() {
         return null;
     }
 
-    public void batchSaveUser(List<User> list) {
+    public void batchSaveUser(List<UserInfo> list) {
 
     }
 
-    public int updateUser(User user) {
+    public int updateUser(UserInfo user) {
         return 0;
     }
 }

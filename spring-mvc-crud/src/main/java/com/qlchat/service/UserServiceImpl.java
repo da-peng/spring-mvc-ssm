@@ -1,8 +1,7 @@
 package com.qlchat.service;
 
 import com.qlchat.bean.User;
-import com.qlchat.dao.UserDaoImpl;
-import com.qlchat.dto.UserInfoDto;
+import com.qlchat.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,22 +21,22 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    private UserDaoImpl dao;
+    private UserMapper userMapper;
 
-    public User getUserById(Integer id){
-        return dao.getUserById(id);
+    public User getUserById(long id){
+        return userMapper.selectByUserId(id);
     }
 
     public List<User> listAllUser(){
-        return dao.listAllUser();
+        return userMapper.listAllUser();
     }
     //对于不是添加，修改，删除，设置readOnly = false，
     @Transactional(readOnly = false)//写
     public void batchSaveUser(List<User> list){
-        dao.batchSaveUser(list);
+        userMapper.batchSaveUser(list);
     }
     @Transactional(readOnly = false)//写
     public int updateUser(User user){
-        return dao.updateUser(user);
+        return userMapper.updateUser(user);
     }
 }

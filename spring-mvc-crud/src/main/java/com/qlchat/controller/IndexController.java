@@ -1,7 +1,7 @@
 package com.qlchat.controller;
 
 
-import com.qlchat.bean.User;
+import com.qlchat.bean.UserInfo;
 import com.qlchat.utils.LogUtils;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -49,7 +49,7 @@ public class IndexController {
     */
 
     @RequestMapping("/login")
-    public String login(User user, HttpSession httpSession, Model m) {
+    public String login(UserInfo user, HttpSession httpSession, Model m) {
 
         String username = user.getUsername();
         String password = user.getPassword();

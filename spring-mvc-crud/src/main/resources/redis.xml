@@ -6,20 +6,21 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
          http://www.springframework.org/schema/context/spring-context.xsd">
+
     <context:component-scan base-package="com.qlchat.cache" />
 
     <!-- Redis 配置 -->
     <!-- jedis 配置 -->
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <!--控制一个pool可分配多少个jedis实例-->
-        <property name="maxTotal" value="${QLCHAT_REDIS_POOL_MAXACTIVE}" /> <!-- 最大能够保持idel状态的对象数 -->
+        <property name="maxTotal" value="${POOL_MAXACTIVE}" /> <!-- 最大能够保持idel状态的对象数 -->
         <!--控制一个pool最多有多少个状态为idle(空闲)的jedis实例；-->
-        <property name="maxIdle" value="${QLCHAT_REDIS_POOL_MAXIDLE}" /> <!-- 最大分配的对象数 -->
+        <property name="maxIdle" value="${POOL_MAXIDLE}" /> <!-- 最大分配的对象数 -->
         <property name="minIdle" value="1" />
         <!--表示当borrow一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException-->
-        <property name="maxWaitMillis" value="${QLCHAT_REDIS_POOL_MAXWAIT}" />
+        <property name="maxWaitMillis" value="${POOL_MAXWAIT}" />
         <!--在borrow一个jedis实例时，是否提前进行alidate操作；如果为true，则得到的jedis实例均是可用的；-->
-        <property name="testOnBorrow" value="${QLCHAT_REDIS_POOL_TESTONBORROW}"/> <!-- 当调用borrow
+        <property name="testOnBorrow" value="${POOL_TESTONBORROW}"/> <!-- 当调用borrow
 			Object方法时，是否进行有效性检查 -->
     </bean>
 
@@ -29,9 +30,9 @@
     <!-- redis服务器中心 -->
     <bean id="connectionFactory"
           class="com.qlchat.cache.redis.RedisConnectionFactory">
-        <property name="hostName" value="${redis.servers}" />
+        <property name="hostName" value="${REDIS_SERVICE}" />
         <!--<property name="port" value="6379"></property>-->
-        <property name="password" value="#{'${redis.password}'!=''?'${redis.password}':null}" />
+        <property name="password" value="#{'${REDIS_PASSWORD}'!=''?'${REDIS_PASSWORD}':null}" />
         <property name="poolConfig" ref="jedisPoolConfig" />
     </bean>
 

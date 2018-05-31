@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="logFilter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+        <property name="statementExecutableSqlLogEnable" value="false" />
+    </bean>
+    <!--读取配置 参数配置-->
+    <bean id="propertyConfigure"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:*.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${database.driver}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${DATABASE_USERNAME}"/>
+        <property name="password" value="${DATABASE_PWD}"/>
+        <!--初始化时建立物理连接的个数-->
+        <property name="initialSize" value="${database.initialSize}" />
+        <!--最小连接池数量-->
+        <property name="minIdle" value="${database.minIdle}" />
+        <!--最大连接池数量-->
+        <property name="maxActive" value="${database.maxActive}" />
+        <!--获取连接时最大等待时间，单位毫秒-->
+        <property name="maxWait" value="${database.maxWait}" />
+        <!--配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒,连接回收-->
+        <property name="timeBetweenEvictionRunsMillis" value="${database.timeBetweenEvictionRunsMillis}" />
+        <!--配置一个连接在池中最小生存的时间，单位是毫秒-->
+        <property name="minEvictableIdleTimeMillis" value="${database.minEvictableIdleTimeMillis}" />
+        <!--申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有-->
+        <property name="testWhileIdle" value="${database.testWhileIdle}" />
+        <!--申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能-->
+        <property name="testOnBorrow" value="${database.testOnBorrow}" />
+        <!--归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能-->
+        <property name="testOnReturn" value="${database.testOnReturn}" />
+
+        <property name="defaultAutoCommit" value="${database.defaultAutoCommit}"/>
+        <property name="validationQuery" value="${database.validationQuery}" />
+        <property name="connectionInitSqls" value="${database.connectionInitSqls}" />
+        <!---->
+        <property name="filters" value="stat" />
+        <property name="proxyFilters">
+            <list>
+                <ref bean="logFilter" />
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- 开启事务控制的注解支持 -->
+
+    <!--事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 使用注解事务，需要添加Transactional注解属性 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--配置SqlSessionFactoryBean -->
+    <bean id = "sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:/mapper/*.xml</value>
+            </array>
+        </property>
+        <!--配置包中类的别名，配置后，包中的类在XML映射文件中使用时可以省略包名部分，直接使用类名，当配置多个包路径时可以使用；
+        分号或逗号进行分割-->
+        <property name="typeAliasesPackage" value="com.qlchat.model"/>
+    </bean>
+
+    <!--配置MapperScannerConfigurer-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--自定扫描接口mapper-->
+        <property name="basePackage" value="com.qlchat.**.mapper"/>
+        <!--basePackage，多个包，使用分号或逗号，递归搜索-->
+        <!--annotationClass 设置该参数，MyBatis的接口只有包含该注解才能被扫描进去-->
+    </bean>
+</beans>
